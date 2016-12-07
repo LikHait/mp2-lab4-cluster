@@ -2,8 +2,9 @@
 #define __QUEUE_H__
 
 template <class T>
-class TStack
+class TQueue
 {
+	T info;
 
 public:
 
