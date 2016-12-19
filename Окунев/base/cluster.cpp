@@ -70,39 +70,44 @@ void TCluster::Emulate()
             if (TicksLeft[i] == 0)
                 ProcFree++;
         }
+        std::cout << ProcFree << std::endl;
         if (ProcFree > 0)
         {
             if (!PrQu.IsEmpty())
             {
                 for (int i = 0; i < PrQu.GetCount(); i++)
                 {
-                    if (PrQu.GetPriority(i) < 4)
+                    if (ProcFree >= PrQu.GetElement(i).ProcNeed)
                     {
-                        if (ProcFree >= PrQu.GetElement(i).ProcNeed)
+                        ProcFree -= PrQu.GetElement(i).ProcNeed;
+                        LastResult[2]++;
+                        int j = 0;
+                        while (PrQu.GetElement(i).ProcNeed != 0)
                         {
-                            ProcFree -= PrQu.GetElement(i).ProcNeed;
-                            LastResult[2]++;
-                            int j = 0;
-                            while (PrQu.GetElement(i).ProcNeed != 0)
+                            if (TicksLeft[j] <= 0)
                             {
-                                if (TicksLeft[j] <= 0)
-                                {
-                                    LastResult[3] += TicksLeft[j];
-                                    TicksLeft[j] = PrQu.GetElement(i).tacts;
-                                    process tmp = PrQu.GetElement(i);
-                                    tmp.ProcNeed--;
-                                    PrQu.SetElement(tmp, i);
-                                }
-                                j++;
+                                LastResult[3] += TicksLeft[j];
+                                TicksLeft[j] = PrQu.GetElement(i).tacts;
+                                process tmp = PrQu.GetElement(i);
+                                tmp.ProcNeed--;
+                                PrQu.SetElement(tmp, i);
                             }
-                            PrQu.Delete(i);
+                            j++;
                         }
-                        else
-                            PrQu.IncPriority(i);
+                        PrQu.Delete(i);
+                        if (ProcFree == 0)
+                            break;
                     }
                     else
                     {
-                        break;
+                        PrQu.IncPriority(i);
+                        if (PrQu.GetPriority(i) < 4)
+                        {
+                        }
+                        else
+                        {
+                            break;
+                        }
                     }
                 }
             }
@@ -117,6 +122,7 @@ void TCluster::Emulate()
     }
     LastResult[3] = LastResult[3] - max * processors - processors;
     LastResult[3] = LastResult[3] - 2 * LastResult[3]; //меняем знак числа на положительный
+    std::cout << PrQu.GetPriority(0) << std::endl;
 }
 
 void TCluster::GetRes()
