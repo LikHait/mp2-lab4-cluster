@@ -34,6 +34,12 @@ TCluster::TCluster(double a, unsigned int pr, unsigned int t, unsigned int max)
         MaxQueue = max;
 }
 
+TCluster::~TCluster()
+{
+    delete[] TicksLeft;
+    delete[] LastResult;
+}
+
 void TCluster::NewTask(TQueue<process>& qu)
 {
     srand(time(0));

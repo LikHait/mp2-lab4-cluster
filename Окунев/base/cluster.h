@@ -20,6 +20,7 @@ class TCluster
     double alpha; //коэффициент появления новых задач
 public:
     TCluster(double a, unsigned int pr, unsigned int t, unsigned int qu);
+    ~TCluster();
     void NewTask(TQueue<process>& qu);
     void Emulate();
     void GetRes();

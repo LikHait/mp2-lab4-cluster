@@ -144,7 +144,7 @@ void TQueue<T>::Delete(size_t pos)
         p->pNext;
     if (pos == 0)
     {
-        p = p->pNext;
+        p = pFirst->pNext;
         delete pFirst;
         pFirst = p;
     }
