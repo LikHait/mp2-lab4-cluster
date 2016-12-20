@@ -1,4 +1,4 @@
-#ifndef __QUEUE_H__
+п»ї#ifndef __QUEUE_H__
 #define __QUEUE_H__
 
 const int MAX_SIZE = 999;
@@ -15,30 +15,30 @@ template <class T>
 class TQueue
 {
     TNode<T>* pFirst;
-    size_t count; //элементов в очереди
-    size_t MaxCount; //максимум элементов
+    size_t count; //СЌР»РµРјРµРЅС‚РѕРІ РІ РѕС‡РµСЂРµРґРё
+    size_t MaxCount; //РјР°РєСЃРёРјСѓРј СЌР»РµРјРµРЅС‚РѕРІ
 public:
     TQueue();
     TQueue(size_t max);
     TQueue(T &node);
     ~TQueue();
 //insert 
-    void InsFirst(T &node); //вставить в начало очереди
-    void InsLast(T &node); //вставить в конец очереди
-    void Insert(T &node, size_t pos); //вставить в определённую позицию в очереди
+    void InsFirst(T &node); //РІСЃС‚Р°РІРёС‚СЊ РІ РЅР°С‡Р°Р»Рѕ РѕС‡РµСЂРµРґРё
+    void InsLast(T &node); //РІСЃС‚Р°РІРёС‚СЊ РІ РєРѕРЅРµС† РѕС‡РµСЂРµРґРё
+    void Insert(T &node, size_t pos); //РІСЃС‚Р°РІРёС‚СЊ РІ РѕРїСЂРµРґРµР»С‘РЅРЅСѓСЋ РїРѕР·РёС†РёСЋ РІ РѕС‡РµСЂРµРґРё
 //delete
-    void DelFirst(); //удалить первый
-    void DelLast(); //удалить последний
-    void Delete(size_t pos); //удалить элемент на позиции pos
+    void DelFirst(); //СѓРґР°Р»РёС‚СЊ РїРµСЂРІС‹Р№
+    void DelLast(); //СѓРґР°Р»РёС‚СЊ РїРѕСЃР»РµРґРЅРёР№
+    void Delete(size_t pos); //СѓРґР°Р»РёС‚СЊ СЌР»РµРјРµРЅС‚ РЅР° РїРѕР·РёС†РёРё pos
 //operation with elements
-    size_t GetCount(); //получить размер очереди
-    T GetElement(size_t pos); //получит элемент
-    void SetElement(T elem, size_t pos); //изменить элемент
-    unsigned int GetPriority(size_t pos); //получить приоритет элемента
-    void IncPriority(size_t pos); //увеличить приоритет элемента на 1
+    size_t GetCount(); //РїРѕР»СѓС‡РёС‚СЊ СЂР°Р·РјРµСЂ РѕС‡РµСЂРµРґРё
+    T GetElement(size_t pos); //РїРѕР»СѓС‡РёС‚ СЌР»РµРјРµРЅС‚
+    void SetElement(T elem, size_t pos); //РёР·РјРµРЅРёС‚СЊ СЌР»РµРјРµРЅС‚
+    unsigned int GetPriority(size_t pos); //РїРѕР»СѓС‡РёС‚СЊ РїСЂРёРѕСЂРёС‚РµС‚ СЌР»РµРјРµРЅС‚Р°
+    void IncPriority(size_t pos); //СѓРІРµР»РёС‡РёС‚СЊ РїСЂРёРѕСЂРёС‚РµС‚ СЌР»РµРјРµРЅС‚Р° РЅР° 1
 //Checking the status
-    bool IsFull(); //проверить очередь на заполненность
-    bool IsEmpty(); //проверить очередь на пустоту
+    bool IsFull(); //РїСЂРѕРІРµСЂРёС‚СЊ РѕС‡РµСЂРµРґСЊ РЅР° Р·Р°РїРѕР»РЅРµРЅРЅРѕСЃС‚СЊ
+    bool IsEmpty(); //РїСЂРѕРІРµСЂРёС‚СЊ РѕС‡РµСЂРµРґСЊ РЅР° РїСѓСЃС‚РѕС‚Сѓ
 };
 
 template <class T>

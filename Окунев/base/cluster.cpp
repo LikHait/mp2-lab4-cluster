@@ -1,4 +1,4 @@
-#include "queue.h"
+ï»¿#include "queue.h"
 #include "cluster.h"
 #include <ctime>
 #include <cstdlib>
@@ -57,7 +57,7 @@ void TCluster::NewTask(TQueue<process>& qu)
             add.ProcNeed = rand() % processors + 1;
             qu.InsLast(add);
             LastResult[1]++;
-            std::cout << "Íîâàÿ çàäà÷à: " << add.tacts << " òàêòîâ " << add.ProcNeed << " ïðîöåññîðîâ" << std::endl;
+            std::cout << "ÐÐ¾Ð²Ð°Ñ Ð·Ð°Ð´Ð°Ñ‡Ð°: " << add.tacts << " Ñ‚Ð°ÐºÑ‚Ð¾Ð² " << add.ProcNeed << " Ð¿Ñ€Ð¾Ñ†ÐµÑÑÐ¾Ñ€Ð¾Ð²" << std::endl;
         }
         else
             LastResult[0]++;
@@ -127,7 +127,7 @@ void TCluster::Emulate()
         LastResult[3] += TicksLeft[i];
     }
     LastResult[3] = LastResult[3] - max * processors - processors;
-    LastResult[3] = LastResult[3] - 2 * LastResult[3]; //ìåíÿåì çíàê ÷èñëà íà ïîëîæèòåëüíûé
+    LastResult[3] = LastResult[3] - 2 * LastResult[3]; //Ð¼ÐµÐ½ÑÐµÐ¼ Ð·Ð½Ð°Ðº Ñ‡Ð¸ÑÐ»Ð° Ð½Ð° Ð¿Ð¾Ð»Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ð¹
     std::cout << PrQu.GetPriority(0) << std::endl;
 }
 
