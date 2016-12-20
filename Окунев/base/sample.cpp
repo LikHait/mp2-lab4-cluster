@@ -16,7 +16,7 @@ int main()
     cin >> pr;
     cout << "Тактов работы (от 10) : ";
     cin >> t;
-    cout << "Максимальный размер очереди (не менее 25) : ";
+    cout << "Максимальный размер очереди, 0 - без ограничений: ";
     cin >> max;
     TCluster sample(a, pr, t, max);
     sample.Emulate();

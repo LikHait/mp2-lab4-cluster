@@ -7,8 +7,6 @@
 
 TCluster::TCluster(double a, unsigned int pr, unsigned int t, unsigned int max)
 {
-    if (max < 25)
-        throw("Queue is too small");
     if (pr > 64)
         throw("Wrong number of processors");
     TicksLeft = new int[pr];
@@ -128,7 +126,6 @@ void TCluster::Emulate()
     }
     LastResult[3] = LastResult[3] - max * processors - processors;
     LastResult[3] = LastResult[3] - 2 * LastResult[3]; //меняем знак числа на положительный
-    std::cout << PrQu.GetPriority(0) << std::endl;
 }
 
 void TCluster::GetRes()

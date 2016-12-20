@@ -102,3 +102,21 @@ TEST(TQueue, can_change_element)
     queue.SetElement(d, 0);
     EXPECT_EQ(queue.GetElement(0), d);
 }
+
+TEST(TQueue, big_test)
+{
+    size_t b = 5;
+    TQueue<int> queue(b);
+    int a = 5;
+    for (int i = 0; i < b; i++)
+        queue.InsFirst(a);
+    for (int i = 0; i < b; i++)
+    {
+        queue.InsLast(a);
+        queue.Delete(1);
+    }
+    queue.Delete(1);
+    int d = 10;
+    queue.InsLast(d);
+    EXPECT_EQ(queue.GetElement(b - 1), d);
+}
