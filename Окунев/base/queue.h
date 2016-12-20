@@ -1,6 +1,8 @@
 #ifndef __QUEUE_H__
 #define __QUEUE_H__
 
+const int MAX_SIZE = 999;
+
 template <typename T>
 struct TNode
 {
@@ -13,27 +15,38 @@ template <class T>
 class TQueue
 {
     TNode<T>* pFirst;
-    size_t count;
+    size_t count; //элементов в очереди
+    size_t MaxCount; //максимум элементов
 public:
     TQueue();
+    TQueue(size_t max);
     TQueue(T &node);
-//insert
-    void InsFirst(T &node);
-    void InsLast(T &node);
-    void Insert(T &node, size_t pos);
+    ~TQueue();
+//insert 
+    void InsFirst(T &node); //вставить в начало очереди
+    void InsLast(T &node); //вставить в конец очереди
+    void Insert(T &node, size_t pos); //вставить в определённую позицию в очереди
 //delete
-    void DelFirst();
-    void DelLast();
-    void Delete(size_t pos);
-    size_t GetCount();
-    T GetElement(size_t pos); 
-    void SetElement(T elem, size_t pos);
-    unsigned int GetPriority(size_t pos);
-    void IncPriority(size_t pos);
+    void DelFirst(); //удалить первый
+    void DelLast(); //удалить последний
+    void Delete(size_t pos); //удалить элемент на позиции pos
+//operation with elements
+    size_t GetCount(); //получить размер очереди
+    T GetElement(size_t pos); //получит элемент
+    void SetElement(T elem, size_t pos); //изменить элемент
+    unsigned int GetPriority(size_t pos); //получить приоритет элемента
+    void IncPriority(size_t pos); //увеличить приоритет элемента на 1
+//Checking the status
+    bool IsFull(); //проверить очередь на заполненность
+    bool IsEmpty(); //проверить очередь на пустоту
 };
 
 template <class T>
 TQueue<T>::TQueue() : pFirst(nullptr), count(0)
+{}
+
+template <class T>
+TQueue<T>::TQueue(size_t max) : pFirst(nullptr), count(0), MaxCount(max)
 {}
 
 template <class T>
@@ -42,7 +55,24 @@ TQueue<T>::TQueue(T &node)
     pFirst = new TNode<T>;
     pFirst->Value = node;
     pFirst->pNext = nullptr;
+    MaxCount = MAX_SIZE;
     count = 1;
+}
+
+template <class T>
+TQueue<T>::~TQueue()
+{
+    if (pFirst != nullptr)
+    {
+        TNode<T>* p;
+        for (int i = 0; i < count; i++)
+        {
+            p = pFirst->pNext;
+            delete pFirst;
+            pFirst = p;
+        }
+        delete pFirst;
+    }
 }
 
 //insert
@@ -51,6 +81,7 @@ template <class T>
 void TQueue<T>::InsFirst(T &node)
 {
     TNode<T> *p = new TNode<T>();
+    p->priotiry = 0;
     p->Value = node;
     p->pNext = pFirst;
     pFirst = p;
@@ -61,9 +92,15 @@ template <class T>
 void TQueue<T>::InsLast(T &node)
 {
     TNode<T>* p = pFirst;
-    for (int i = 0; i < pos - 1; i++)
+    if (count == 0)
+    {
+        InsFirst(node);
+        return;
+    }
+    for (int i = 0; i < count - 1; i++)
         p = p->pNext;
     TNode<T>* tmp = new TNode<T>;
+    tmp->priotiry = 0;
     tmp->Value = node;
     tmp->pNext = nullptr;
     if (p != nullptr)
@@ -85,6 +122,7 @@ void TQueue<T>::Insert(T &node, size_t pos)
     else
     {
         TNode<T>* tmp = new TNode<T>;
+        tmp->priority = 0;
         tmp->Value = node;
         TNode<T>* p = pFirst;
         for (int i = 0; i < pos - 1; i++)
@@ -106,7 +144,7 @@ void TQueue<T>::Delete(size_t pos)
         p->pNext;
     if (pos == 0)
     {
-        p = p->pNext;
+        p = pFirst->pNext;
         delete pFirst;
         pFirst = p;
     }
@@ -117,7 +155,7 @@ void TQueue<T>::Delete(size_t pos)
     }
     else
     {
-        TNode<T> tmp = p->pNext->pNext;
+        TNode<T>* tmp = p->pNext->pNext;
         delete p->pNext;
         p->pNext = tmp;
     }
@@ -184,6 +222,24 @@ void TQueue<T>::IncPriority(size_t pos)
     for (int i = 0; i < pos; i++)
         p = p->pNext;
     p->priotiry++;
+}
+
+template <class T>
+bool TQueue<T>::IsFull()
+{
+    if (MaxCount == count)
+        return 1;
+    else
+        return 0;
+}
+
+template <class T>
+bool TQueue<T>::IsEmpty()
+{
+    if (0 == count)
+        return 1;
+    else
+        return 0;
 }
 
 #endif

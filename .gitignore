@@ -30,3 +30,7 @@
 *.tlog
 *.pdb
 *.cache
+*.log
+*.filters
+*.idb
+*.vcxproj
