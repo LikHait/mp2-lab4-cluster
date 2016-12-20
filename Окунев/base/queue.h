@@ -31,7 +31,7 @@ public:
     void DelLast(); //удалить последний
     void Delete(size_t pos); //удалить элемент на позиции pos
 //operation with elements
-    size_t GetCount(); //получить размер очереди
+    size_t GetCount(); //получить текущий размер очереди
     T GetElement(size_t pos); //получит элемент
     void SetElement(T elem, size_t pos); //изменить элемент
     unsigned int GetPriority(size_t pos); //получить приоритет элемента
