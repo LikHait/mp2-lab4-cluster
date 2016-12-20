@@ -137,27 +137,31 @@ void TQueue<T>::Insert(T &node, size_t pos)
 template <class T>
 void TQueue<T>::Delete(size_t pos)
 {
+    if (IsEmpty())
+        throw("Queue is empty");
     if (pos > count - 1)
         throw("Attempt to remove a non-existent element");
     TNode<T>* p = pFirst;
-    for (int i = 0; i < pos - 1; i++)
-        p->pNext;
     if (pos == 0)
     {
         p = pFirst->pNext;
         delete pFirst;
         pFirst = p;
     }
-    else if (pos == count - 1)
-    {
-        delete p->pNext;
-        p->pNext = nullptr;
-    }
-    else
-    {
-        TNode<T>* tmp = p->pNext->pNext;
-        delete p->pNext;
-        p->pNext = tmp;
+    else {
+        for (int i = 0; i < pos - 1; i++)
+            p->pNext;
+        if (pos == count - 1)
+        {
+            delete p->pNext;
+            p->pNext = nullptr;
+        }
+        else
+        {
+            TNode<T>* tmp = p->pNext->pNext;
+            delete p->pNext;
+            p->pNext = tmp;
+        }
     }
     count--;
 }
