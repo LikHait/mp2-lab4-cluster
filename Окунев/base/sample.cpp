@@ -10,7 +10,7 @@ int main()
     unsigned int max;
     setlocale(LC_ALL, "Russian");
     cout << "Введите параметры имитируемого кластера \n";
-    cout << "Порог появления новой задачи (от 0 до 1). alpha = ";
+    cout << "Порог появления новой задачи (от 0 до 1): alpha = ";
     cin >> a; 
     cout << "Количество процессоров (от 1 до 64) : ";
     cin >> pr;
@@ -20,7 +20,7 @@ int main()
     cin >> max;
     TCluster sample(a, pr, t, max);
     sample.Emulate();
-    cout << "Результаты имитации работы кластера: ";
+    cout << "Результаты имитации работы кластера: " << endl;;
     sample.GetRes();
     int ad;
     cin >> ad;

@@ -41,9 +41,8 @@ TCluster::~TCluster()
 void TCluster::NewTask(TQueue<process>& qu)
 {
     srand(time(0));
-    Sleep(300);
-    double talp = rand() % 100;
-    talp /= 100;
+    Sleep(500);
+    double talp = (double)(rand() % 100) / 100;
     std::cout << talp << ' ';
     if (talp > alpha)
     {
@@ -130,6 +129,9 @@ void TCluster::Emulate()
 
 void TCluster::GetRes()
 {
-    for (int i = 0; i < 4; i++)
-        std::cout << LastResult[i] << std::endl;
+    using namespace std;
+    cout << "   Задач не было поставлено в очередь: " << LastResult[0] << endl;
+    cout << "   Задач поставлено в очередь: " << LastResult[1] << endl;
+    cout << "   Задач выполнено: " << LastResult[2] << endl;
+    cout << "   Суммарно тактов простоя: " << LastResult[3] << endl;
 }
