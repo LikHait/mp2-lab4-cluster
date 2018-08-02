@@ -1,23 +1,23 @@
-#ifndef __CLUSTER_H__
+п»ї#ifndef __CLUSTER_H__
 #define __CLUSTER_H__
 
 #include "queue.h"
 
 struct process
 {
-    unsigned int tacts; //число тактов 1-10
-    unsigned int ProcNeed; //число требуемых процессоров
+    unsigned int tacts; //С‡РёСЃР»Рѕ С‚Р°РєС‚РѕРІ 1-10
+    unsigned int ProcNeed; //С‡РёСЃР»Рѕ С‚СЂРµР±СѓРµРјС‹С… РїСЂРѕС†РµСЃСЃРѕСЂРѕРІ
 };
 
 class TCluster
 {
-    unsigned int processors; //процессоров в кластере
-    unsigned int ProcFree; //на данный момент свободно процессоров
-    unsigned int MaxQueue; //максимальный размер очереди процессов
-    int* TicksLeft; //осталось тиков выполнения(для каждого ядра)
-    unsigned int T; //время работы эмуляции
-    int* LastResult; //последний результат запуска эмуляции
-    double alpha; //коэффициент появления новых задач
+    unsigned int processors; //РїСЂРѕС†РµСЃСЃРѕСЂРѕРІ РІ РєР»Р°СЃС‚РµСЂРµ
+    unsigned int ProcFree; //РЅР° РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ СЃРІРѕР±РѕРґРЅРѕ РїСЂРѕС†РµСЃСЃРѕСЂРѕРІ
+    unsigned int MaxQueue; //РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ РѕС‡РµСЂРµРґРё РїСЂРѕС†РµСЃСЃРѕРІ
+    int* TicksLeft; //РѕСЃС‚Р°Р»РѕСЃСЊ С‚РёРєРѕРІ РІС‹РїРѕР»РЅРµРЅРёСЏ(РґР»СЏ РєР°Р¶РґРѕРіРѕ СЏРґСЂР°)
+    unsigned int T; //РІСЂРµРјСЏ СЂР°Р±РѕС‚С‹ СЌРјСѓР»СЏС†РёРё
+    int* LastResult; //РїРѕСЃР»РµРґРЅРёР№ СЂРµР·СѓР»СЊС‚Р°С‚ Р·Р°РїСѓСЃРєР° СЌРјСѓР»СЏС†РёРё
+    double alpha; //РєРѕСЌС„С„РёС†РёРµРЅС‚ РїРѕСЏРІР»РµРЅРёСЏ РЅРѕРІС‹С… Р·Р°РґР°С‡
 public:
     TCluster(double a, unsigned int pr, unsigned int t, unsigned int qu);
     ~TCluster();

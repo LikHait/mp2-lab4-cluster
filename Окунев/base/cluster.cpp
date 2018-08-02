@@ -1,4 +1,4 @@
-#include "queue.h"
+﻿#include "queue.h"
 #include "cluster.h"
 #include <ctime>
 #include <cstdlib>
@@ -7,8 +7,6 @@
 
 TCluster::TCluster(double a, unsigned int pr, unsigned int t, unsigned int max)
 {
-    if (max < 25)
-        throw("Queue is too small");
     if (pr > 64)
         throw("Wrong number of processors");
     TicksLeft = new int[pr];
@@ -43,9 +41,8 @@ TCluster::~TCluster()
 void TCluster::NewTask(TQueue<process>& qu)
 {
     srand(time(0));
-    Sleep(300);
-    double talp = rand() % 100;
-    talp /= 100;
+    Sleep(500);
+    double talp = (double)(rand() % 100) / 100;
     std::cout << talp << ' ';
     if (talp > alpha)
     {
@@ -57,7 +54,7 @@ void TCluster::NewTask(TQueue<process>& qu)
             add.ProcNeed = rand() % processors + 1;
             qu.InsLast(add);
             LastResult[1]++;
-            std::cout << "����� ������: " << add.tacts << " ������ " << add.ProcNeed << " �����������" << std::endl;
+            std::cout << "Новая задача: " << add.tacts << " тактов " << add.ProcNeed << " процессоров" << std::endl;
         }
         else
             LastResult[0]++;
@@ -127,12 +124,14 @@ void TCluster::Emulate()
         LastResult[3] += TicksLeft[i];
     }
     LastResult[3] = LastResult[3] - max * processors - processors;
-    LastResult[3] = LastResult[3] - 2 * LastResult[3]; //������ ���� ����� �� �������������
-    std::cout << PrQu.GetPriority(0) << std::endl;
+    LastResult[3] = LastResult[3] - 2 * LastResult[3]; //меняем знак числа на положительный
 }
 
 void TCluster::GetRes()
 {
-    for (int i = 0; i < 4; i++)
-        std::cout << LastResult[i] << std::endl;
+    using namespace std;
+    cout << "   Задач не было поставлено в очередь: " << LastResult[0] << endl;
+    cout << "   Задач поставлено в очередь: " << LastResult[1] << endl;
+    cout << "   Задач выполнено: " << LastResult[2] << endl;
+    cout << "   Суммарно тактов простоя: " << LastResult[3] << endl;
 }
